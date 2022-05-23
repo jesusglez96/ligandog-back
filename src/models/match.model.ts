@@ -1,11 +1,13 @@
-import { Schema, model, Types, Document } from "mongoose";
+import {
+  Schema, model, Types, Document,
+} from 'mongoose';
 
-interface Match extends Document {
+interface MatchInterface extends Document {
   user1_id: { type: Types.ObjectId; required: true };
   user2_id: { type: Types.ObjectId; required: true };
 }
 
-const matchSchema = new Schema<Match>(
+const matchSchema = new Schema<MatchInterface>(
   {
     user1_id: { type: Types.ObjectId, required: true },
     user2_id: { type: Types.ObjectId, required: true },
@@ -13,7 +15,8 @@ const matchSchema = new Schema<Match>(
   {
     timestamps: true,
     versionKey: false,
-  }
+  },
 );
 
-module.exports = model<Match>("Match", matchSchema);
+const Match = model<MatchInterface>('Match', matchSchema);
+export default Match;
