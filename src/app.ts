@@ -10,6 +10,7 @@ import options from './utils/swagger-config';
 // eslint-disable-next-line import/extensions
 const chalk = require('chalk');
 const log = require('fancy-log');
+require('dotenv').config({ path: '.env' });
 
 const serverFastify: FastifyInstance = fastify();
 // export type AppOptions = {
@@ -44,7 +45,7 @@ void serverFastify.register(AutoLoad, {
 // export default app;
 // export { app };
 
-serverFastify.listen(String(process.env.PORT), (err: any, address: any) => {
+serverFastify.listen(String(process.env.PORT) || 3000, (err: any, address: any) => {
   if (err) {
     log.error(chalk.red(err));
     process.exit(1);
