@@ -45,10 +45,14 @@ void serverFastify.register(AutoLoad, {
 // export default app;
 // export { app };
 const port = process.env.PORT || 3000;
-serverFastify.listen(port, (err: any, address: any) => {
-  if (err) {
-    log.error(chalk.red(err));
-    process.exit(1);
-  }
-  log.info(chalk.blue(`Server listening at ${address}`));
-});
+const start = async () => {
+  await serverFastify.listen(port, (err: any, address: any) => {
+    if (err) {
+      log.error(chalk.red(err));
+      process.exit(1);
+    }
+    log.info(chalk.blue(`Server listening at ${address}`));
+  });
+};
+
+start();
