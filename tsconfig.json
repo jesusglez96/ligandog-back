@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "outDir": "dist",
+    "outDir": "build",
     "sourceMap": true,
     "target": "es2018",
     "module": "commonjs",
