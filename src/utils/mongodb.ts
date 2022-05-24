@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 
 const chalk = require('chalk');
-// const log = require('fancy-log');
+const log = require('fancy-log');
 require('dotenv').config({ path: '.env' });
 
 class MongoDB {
@@ -12,13 +12,13 @@ class MongoDB {
     try {
       const conn = await mongoose.connect(this.url);
       if (conn) {
-        console.log(chalk.green('MongoDB connected...'));
+        log.info(chalk.green('MongoDB connected...'));
       } else {
-        console.error(chalk.red('There is a connection error'));
+        log.error(chalk.red('There is a connection error'));
         throw new Error();
       }
     } catch (error) {
-      console.error(chalk.red(error));
+      log.error(chalk.red(error));
       throw new Error();
     }
   };

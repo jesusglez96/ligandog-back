@@ -11,7 +11,7 @@
     "watch-node": "nodemon build/app.js",
     "watch-ts": "tsc -w",
     "test": "npm run build && tsc -p test/tsconfig.json && tap --ts test/**/*.test.ts",
-    "start": "node build/app.js",
+    "start": "fastify build/app.js",
     "build": "tsc",
     "dev": "tsc && concurrently -k -p \"[{name}]\" -n \"TypeScript,App\" -c \"yellow.bold,cyan.bold\" \"tsc -w\" \"fastify start --ignore-watch=.ts$ -w -l info -P dist/app.js\""
   },
