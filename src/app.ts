@@ -45,7 +45,7 @@ void serverFastify.register(AutoLoad, {
 // export default app;
 // export { app };
 const start = async (port: any) => {
-  await serverFastify.listen(port, (err: any, address: any) => {
+  serverFastify.listen(port, process.env.HOST, (err: any, address: any) => {
     if (err) {
       log.error(chalk.red(err));
       process.exit(1);
