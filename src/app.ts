@@ -44,8 +44,7 @@ void serverFastify.register(AutoLoad, {
 
 // export default app;
 // export { app };
-const port = process.env.PORT || 3000;
-const start = async () => {
+const start = async (port: any) => {
   await serverFastify.listen(port, (err: any, address: any) => {
     if (err) {
       log.error(chalk.red(err));
@@ -55,4 +54,5 @@ const start = async () => {
   });
 };
 
-start();
+const port = process.env.PORT || 3000;
+start(port);
