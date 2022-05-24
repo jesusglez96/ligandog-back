@@ -4,14 +4,14 @@ import {
 
 interface UserInterface extends Document {
   _id: Types.ObjectId,
-  name: String;
-  email: String;
-  password: String;
-  image: String;
-  sex: String;
-  size: String;
-  iHaveLike: [Types.ObjectId];
-  iGotLike: [Types.ObjectId];
+  name: String,
+  email: String,
+  password: String,
+  image: String,
+  sex: String,
+  size: String,
+  iHaveLike: [Types.ObjectId],
+  iGotLike: [Types.ObjectId],
 }
 
 const userSchema = new Schema<UserInterface>(

@@ -12,9 +12,11 @@
   "rules": {
     "import/extensions": "off"
   },
-  "import/resolver": {
-    "node": {
-      "extensions": [".js", ".jsx", ".ts", ".tsx"]
+  "settings": {
+    "import": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
     }
   }
 }

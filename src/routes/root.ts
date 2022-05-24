@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-underscore-dangle */
 import { FastifyPluginAsync } from 'fastify';
@@ -136,11 +137,11 @@ const root: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
   );
   // Next two endpoints is to handle bad entries points
   fastify.all('/', async (request: GenericObject, reply: GenericObject) => {
-    log.error(chalk.yellow("You shouldn't be here"));
+    log.error(chalk.yellow("You shouldn't be here", JSON.stringify(request.body)));
     reply.code(400).send('You shouldnt be here.');
   });
   fastify.all('/*', async (request: GenericObject, reply: GenericObject) => {
-    log.error(chalk.yellow("You shouldn't be here"));
+    log.error(chalk.yellow("You shouldn't be here", JSON.stringify(request.body)));
     reply.code(400).send('You shouldnt be here.');
   });
 };

@@ -1,9 +1,11 @@
+/* eslint-disable import/no-unresolved */
+/* eslint-disable class-methods-use-this */
 /* eslint-disable no-underscore-dangle */
 import { GenericObject } from '../utils/generic-object';
-
-const mongoose = require('mongoose');
 import User from '../models/user.model';
 import Match from '../models/match.model';
+
+const mongoose = require('mongoose');
 
 const chalk = require('chalk');
 const log = require('fancy-log');
@@ -28,20 +30,25 @@ class UserController {
           log.info(chalk.blue(result));
           reply.code(201).send(newUser);
         })
-        .catch((error) => {
+        .catch((error: any) => {
           log.error(chalk.red({
-            error,
+            statusCode: 404,
+            message: 'Not found',
+            error: error.message,
             originalRequest: request.body,
           }));
         });
-    } catch (error) {
+    } catch (error: any) {
       log.error(chalk.red(JSON.stringify({
-        error,
+        statusCode: 500,
+        message: 'Not found',
+        error: error.message,
         originalRequest: request.body,
       })));
       reply.code(500).send({
+        statusCode: 500,
         message: 'Not found',
-        error,
+        error: error.message,
         originalRequest: request.body,
       });
     }
@@ -59,15 +66,17 @@ class UserController {
         statusCode,
         response: loginUser,
       });
-    } catch (error) {
+    } catch (error: any) {
       log.error(chalk.red(JSON.stringify({
-        error,
+        statusCode: 500,
+        message: 'Not found',
+        error: error.message,
         originalRequest: request.body,
       })));
       reply.code(500).send({
         statusCode: 500,
         message: 'Not found',
-        error,
+        error: error.message,
         originalRequest: request.body,
       });
     }
@@ -108,15 +117,17 @@ class UserController {
         statusCode,
         response: returned || null,
       });
-    } catch (error) {
+    } catch (error: any) {
       log.error(chalk.red(JSON.stringify({
-        error,
+        statusCode: 500,
+        message: 'Not found',
+        error: error.message,
         originalRequest: request.body,
       })));
       reply.code(500).send({
         statusCode: 500,
         message: 'Not found',
-        error,
+        error: error.message,
         originalRequest: request.body,
       });
     }
@@ -140,15 +151,17 @@ class UserController {
         statusCode,
         response: 'Update successful!',
       });
-    } catch (error) {
+    } catch (error: any) {
       log.error(chalk.red(JSON.stringify({
-        error,
+        statusCode: 500,
+        message: 'Not found',
+        error: error.message,
         originalRequest: request.body,
       })));
       reply.code(500).send({
         statusCode: 500,
         message: 'Not found',
-        error,
+        error: error.message,
         originalRequest: request.body,
       });
     }
@@ -166,15 +179,17 @@ class UserController {
         statusCode,
         response: arrUsersLiked,
       });
-    } catch (error) {
+    } catch (error: any) {
       log.error(chalk.red(JSON.stringify({
-        error,
+        statusCode: 500,
+        message: 'Not found',
+        error: error.message,
         originalRequest: request.body,
       })));
       reply.code(500).send({
         statusCode: 500,
         message: 'Not found',
-        error,
+        error: error.message,
         originalRequest: request.body,
       });
     }
@@ -186,21 +201,23 @@ class UserController {
       const user = await User.findById(new mongoose.Types.ObjectId(request.body._id)) || new User();
       const arrGotLiked = await User.find({ _id: { $in: user.iGotLike } });
       if (arrGotLiked) {
-        statusCode = 200;
+        statusCode = 201;
       }
       reply.code(statusCode).send({
         statusCode,
         response: arrGotLiked,
       });
-    } catch (error) {
+    } catch (error: any) {
       log.error(chalk.red(JSON.stringify({
-        error,
+        statusCode: 500,
+        message: 'Not found',
+        error: error.message,
         originalRequest: request.body,
       })));
       reply.code(500).send({
         statusCode: 500,
         message: 'Not found',
-        error,
+        error: error.message,
         originalRequest: request.body,
       });
     }

@@ -2,7 +2,7 @@
   "name": "ligandog-back",
   "version": "1.0.0",
   "description": "This project was bootstrapped with Fastify-CLI.",
-  "main": "app.ts",
+  "main": "dist/app.js",
   "directories": {
     "test": "test"
   },
@@ -21,6 +21,7 @@
   "dependencies": {
     "@fastify/autoload": "^4.0.0",
     "@fastify/sensible": "^4.0.0",
+    "@fastify/swagger": "^6.0.1",
     "chalk": "^4.1.2",
     "dotenv": "^16.0.1",
     "fancy-log": "^2.0.0",

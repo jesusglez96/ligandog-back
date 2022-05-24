@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 /* eslint-disable no-void */
 /* eslint-disable import/no-unresolved */
 import { join } from 'path';
@@ -6,6 +7,7 @@ import { FastifyPluginAsync } from 'fastify';
 // eslint-disable-next-line import/no-unresolved
 // eslint-disable-next-line import/extensions
 import MongoDB from './utils/mongodb';
+import options from './utils/swagger-config';
 
 export type AppOptions = {
   // Place your custom options for app below here.
@@ -17,6 +19,7 @@ const app: FastifyPluginAsync<AppOptions> = async (
 ): Promise<void> => {
   // Place here your custom code!
   await MongoDB.connectDB();
+  void fastify.register(require('@fastify/swagger'), options);
   // Do not touch the following lines
 
   // This loads all plugins defined in plugins

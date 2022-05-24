@@ -3,12 +3,14 @@ import {
 } from 'mongoose';
 
 interface MatchInterface extends Document {
-  user1_id: { type: Types.ObjectId; required: true };
-  user2_id: { type: Types.ObjectId; required: true };
+  _id: Types.ObjectId,
+  user1_id: { type: Types.ObjectId; required: true },
+  user2_id: { type: Types.ObjectId; required: true },
 }
 
 const matchSchema = new Schema<MatchInterface>(
   {
+    _id: Types.ObjectId,
     user1_id: { type: Types.ObjectId, required: true },
     user2_id: { type: Types.ObjectId, required: true },
   },

@@ -1,3 +1,5 @@
+/* eslint-disable class-methods-use-this */
+/* eslint-disable import/no-unresolved */
 /* eslint-disable no-underscore-dangle */
 import { GenericObject } from '../utils/generic-object';
 import Match from '../models/match.model';
@@ -12,29 +14,25 @@ class MatchController {
   match = async (request: GenericObject, reply: GenericObject) => {
     try {
       let statusCode = 404;
-      const user1 = await User.findOneAndUpdate(
+      const arrIds = [
+        new mongoose.Types.ObjectId(request.body.user1_id),
+        new mongoose.Types.ObjectId(request.body.user2_id),
+      ];
+      const user1 = await User.updateOne(
         { _id: new mongoose.Types.ObjectId(request.body.user1_id) },
         {
           $pullAll: {
-            $or: [
-              { iHaveLike: new mongoose.Types.ObjectId(request.body.user1_id) },
-              { iHaveLike: new mongoose.Types.ObjectId(request.body.user2_id) },
-              { iGotLike: new mongoose.Types.ObjectId(request.body.user1_id) },
-              { iGotLike: new mongoose.Types.ObjectId(request.body.user2_id) },
-            ],
+            iHaveLike: arrIds,
+            iGotLike: arrIds,
           },
         },
       );
-      const user2 = await User.findOneAndUpdate(
-        { _id: new mongoose.Types.ObjectId(request.body.user1_id) },
+      const user2 = await User.updateOne(
+        { _id: new mongoose.Types.ObjectId(request.body.user2_id) },
         {
           $pullAll: {
-            $or: [
-              { iHaveLike: new mongoose.Types.ObjectId(request.body.user1_id) },
-              { iHaveLike: new mongoose.Types.ObjectId(request.body.user2_id) },
-              { iGotLike: new mongoose.Types.ObjectId(request.body.user1_id) },
-              { iGotLike: new mongoose.Types.ObjectId(request.body.user2_id) },
-            ],
+            iHaveLike: arrIds,
+            iGotLike: arrIds,
           },
         },
       );
@@ -57,18 +55,21 @@ class MatchController {
         statusCode,
         response: match || null,
       });
-    } catch (error) {
+    } catch (error: any) {
       log.error(
         chalk.red(
           JSON.stringify({
-            error,
+            statusCode: 500,
+            message: 'Not found',
+            error: error.message,
             originalRequest: request.body,
           }),
         ),
       );
       reply.code(500).send({
+        statusCode: 500,
         message: 'Not found',
-        error,
+        error: error.message,
         originalRequest: request.body,
       });
     }
@@ -81,7 +82,7 @@ class MatchController {
         $or: [
           { user1_id: new mongoose.Types.ObjectId(request.body._id) },
           { user2_id: new mongoose.Types.ObjectId(request.body._id) },
-        ]
+        ],
       });
       if (matches) {
         statusCode = 200;
@@ -90,18 +91,21 @@ class MatchController {
         statusCode,
         response: matches,
       });
-    } catch (error) {
+    } catch (error: any) {
       log.error(
         chalk.red(
           JSON.stringify({
-            error,
+            statusCode: 500,
+            message: 'Not found',
+            error: error.message,
             originalRequest: request.body,
           }),
         ),
       );
       reply.code(500).send({
+        statusCode: 500,
         message: 'Not found',
-        error,
+        error: error.message,
         originalRequest: request.body,
       });
     }
