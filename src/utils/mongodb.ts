@@ -6,7 +6,7 @@ const log = require('fancy-log');
 require('dotenv').config({ path: '.env' });
 
 class MongoDB {
-  private url: string = String(process.env.MONGODB_CONNECTION_URL) || 'mongodb+srv://jesus-admin:jesus-admin@findegrado.ucg3i.mongodb.net/ligandog';
+  private url: string = 'mongodb+srv://jesus-admin:jesus-admin@findegrado.ucg3i.mongodb.net/ligandog';
 
   connectDB = async () => {
     try {

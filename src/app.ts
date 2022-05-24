@@ -44,8 +44,8 @@ void serverFastify.register(AutoLoad, {
 
 // export default app;
 // export { app };
-
-serverFastify.listen(String(process.env.PORT) || 3000, (err: any, address: any) => {
+const port = process.env.PORT || 3000;
+serverFastify.listen(port, (err: any, address: any) => {
   if (err) {
     log.error(chalk.red(err));
     process.exit(1);
