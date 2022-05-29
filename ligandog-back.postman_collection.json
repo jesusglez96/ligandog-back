@@ -1,0 +1,235 @@
+{
+	"info": {
+		"_postman_id": "a17d9901-b0eb-4614-b36b-dcd874596304",
+		"name": "ligandog-back",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19175206"
+	},
+	"item": [
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"jesus\",\r\n    \"email\": \"jesus\",\r\n  \"password\": \"jesus\",\r\n  \"image\": \"imagen\",\r\n  \"sex\": \"macho\",\r\n  \"size\": \"grande\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://ligandog-back.herokuapp.com/register",
+					"protocol": "https",
+					"host": [
+						"ligandog-back",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"_id\": \"628a56f2b4dac2028cf1cece\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getUser - pretendiente",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"_id\": \"628a56f2b4dac2028cf1cece\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/get-user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"get-user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "likeUser - Añadir usuario a me gusta",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"_id\": \"628a56f2b4dac2028cf1cece\",\r\n    \"userGetLikedID\": \"628a5d5508e0a639ffcfa127\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/i-like-user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"i-like-user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "allLikedUsers - Todos los usuarios que me han gustado",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"_id\": \"628a56f2b4dac2028cf1cece\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/all-i-like-users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"all-i-like-users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "allGotLikeUsers - Todos los usuarios a los que he gustado",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"_id\": \"628a5c8608e0a639ffcfa124\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/all-got-like-users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"all-got-like-users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "match - Crea un match",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user1_id\": \"628a56f2b4dac2028cf1cece\",\r\n    \"user2_id\": \"628a5d5508e0a639ffcfa127\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/match",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"match"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "allMatches - Todos los matches de un usuario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"_id\": \"628a5d5508e0a639ffcfa127\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/all-matches",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"all-matches"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
